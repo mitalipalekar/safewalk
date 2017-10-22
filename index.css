@@ -40,8 +40,12 @@
   margin: 0 auto;
 }
 
-#submitbutton, #speed {
+#submitbutton, #speed, #wrapper {
   width: 100%;
+}
+
+#startlocation {
+  float:left;
 }
 
 #submitdiv {
