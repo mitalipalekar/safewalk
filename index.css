@@ -2,7 +2,7 @@
   border: 5px solid red;
 }
 .navbar {
-  height: 75px;
+  height: 60px;
 }
 
 .navbar-light .navbar-brand {
@@ -14,17 +14,20 @@
 }
 
 #outermap {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 #map {
-  height: 700px;
+  height: 800px;
   width: 80%;
   margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #map-canvas {
   margin-top: 100px;
+<<<<<<< HEAD
   height: 70%;
   top: 60px;
 }

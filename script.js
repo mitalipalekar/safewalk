@@ -34,11 +34,6 @@ function initMap() {
             label: labels[labelIndex++ % labels.length]
         });
     }
-
-    google.maps.event.addListener(map, 'click', function(event) {
-        addMarker(event.latLng, map);
-        console.log(event.latLng)
-    });
 }
 
 
