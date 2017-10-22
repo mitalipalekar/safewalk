@@ -25,7 +25,7 @@ var lettersToLocations = {
   H: 'Disability Center'
 };
 
-// var travelRequests = [{name: 'blah', time: '6pm', path: 'AF', number: '+14252935462'}, {name: 'blah2', time: '6pm', path: 'AF', number: '+14252935462'}, {name: 'blah3', time: '6pm', path: 'AG', number: '+14252935462'}, {name: 'blah4', time: '7pm', path: 'AF', number: '+14252935462'}]
+// var travelRequests = [{name: 'Austin', time: '6pm', path: 'AF', number: '+14254451649'}, {name: 'Christine', time: '6pm', path: 'AF', number: '+14252935462'}, {name: 'Kush', time: '6pm', path: 'AG', number: '+12067392712'}, {name: 'Christine2', time: '7pm', path: 'AG', number: '+14252935462'}]
 // combineWalkingRequests()
 
 // createAndSendText('Austin', '+14254451649', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
