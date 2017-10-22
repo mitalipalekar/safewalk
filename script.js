@@ -23,6 +23,8 @@ var lettersToLocations = {
   F: 'testF'
 };
 
+var travelRequests = {};
+
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
     var test = {lat: 47.656084, lng: -122.309322};
@@ -69,6 +71,27 @@ function addMarker(location, map) {
     });
 }
 
+function addUser() {
+  var name = document.getElementById('modal-form').elements[0].value;
+  var phoneNo = document.getElementById('modal-form').elements[1].value;
+  console.log(name);
+  console.log(phoneNo);
+  var timeDiv = document.getElementById('modal-form').elements[2];
+  var time = time.options[time.selectedIndex].value;
+  console.log(time);
+  // var start = document.getElementById('modal-form').elements[3];
+  // var destination = document.getElementById('modal-form').elements[4];
+
+  // user = {
+  //   name: name,
+  //   number: phoneNo,
+  //   time: time,
+  //   path: start + destination
+  // }
+
+  // travelRequests.add(user);
+}
+
 function createAndSendText(name, number, journey) {
   // journey should be a list of dictionaries of the form:
   // {src: LETTER_OF_SRC, dest: LETTER_OF_DEST, time: DEPARTURE_TIME, travelers: LIST_OF_TRAVELERS}}
@@ -110,4 +133,8 @@ function sendSmsMessage(number, body) {
       from: '+12068006289' // From a valid Twilio number
   })
   .then((message) => console.log(message.sid));
+}
+
+window.onload = function() {
+  document.getElementById('submitbutton').onclick = addUser;
 }
