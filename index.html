@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-       #map {
-        height: 800px;
-        width: 100%;
-       }
-    </style>
+    <link href="safewalk.css" type="text/css" rel="stylesheet" />
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
+    <h3>Safewalk</h3>
     <div id="map"></div>
     <body onload="initialize()">
       <div>
         <input id="address" type="textbox" value="Sydney, NSW">
         <input type="button" value="Geocode" onclick="codeAddress()">
       </div>
-      <div id="map-canvas" style="height:90%;top:30px"></div>
+      <div id="map-canvas"></div>
     </body>
     <script>
       function initMap() {

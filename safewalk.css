@@ -1,0 +1,15 @@
+h3 {
+	font-family: sans-serif;
+	text-align: center;
+}
+
+#map {
+	height: 700px;
+	width: 80%;
+	margin:auto;
+}
+
+#map-canvas {
+	height:70%;
+	top:60px;
+}
