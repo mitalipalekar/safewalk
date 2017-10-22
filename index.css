@@ -40,12 +40,17 @@
   margin: 0 auto;
 }
 
-#submitbutton, #speed, #wrapper {
+#submitbutton, #speed, #wrapper, #destmenu {
   width: 100%;
 }
 
-#startlocation {
+#startlocation, #destination {
   float:left;
+  width: 50%;
+}
+
+#startmenu {
+  width:95%;
 }
 
 #submitdiv {
