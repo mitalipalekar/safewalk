@@ -15,15 +15,17 @@ var places = [
 ];
 
 var lettersToLocations = {
-  A: 'testA',
-  B: 'testB',
-  C: 'testC',
-  D: 'testD',
-  E: 'testE',
-  F: 'testF'
+  A: 'Red Square',
+  B: 'Schmitz Hall',
+  C: 'Maple Hall',
+  D: 'Starbucks on 42nd',
+  E: 'University Book Store',
+  F: 'Safeway',
+  G: 'Trader Joe\'s',
+  H: 'Disability Center'
 };
 
-var travelRequests = {};
+var travelRequests = [];
 
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
@@ -38,6 +40,8 @@ function initMap() {
       center: centerSpot
     });
 
+    var startSelect = document.getElementById('startLocation');
+    var endSelect = document.getElementById('endLocation');
     for (coordinates of places) {
         var aMarker = new google.maps.Marker({
             position: coordinates,
@@ -76,20 +80,77 @@ function addUser() {
   var phoneNo = document.getElementById('modal-form').elements[1].value;
   console.log(name);
   console.log(phoneNo);
-  var timeDiv = document.getElementById('modal-form').elements[2];
-  var time = time.options[time.selectedIndex].value;
-  console.log(time);
-  // var start = document.getElementById('modal-form').elements[3];
-  // var destination = document.getElementById('modal-form').elements[4];
+  var timeDiv = document.getElementById('speed');
+  var time = timeDiv.options[timeDiv.selectedIndex].value;  
+  var startDiv = document.getElementById('startmenu');
+  var start = startDiv.options[startDiv.selectedIndex].value;
+  var destDiv = document.getElementById('destmenu');
+  var destination = destDiv.options[destDiv.selectedIndex].value;
 
-  // user = {
-  //   name: name,
-  //   number: phoneNo,
-  //   time: time,
-  //   path: start + destination
-  // }
+  user = {
+    name: name,
+    number: phoneNo,
+    time: time,
+    path: start + destination
+  }
+  console.log(user);
 
-  // travelRequests.add(user);
+  travelRequests.push(user);
+}
+
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+function combineWalkingRequests() {
+  var pathsToPeeps = {};
+  for (var i = 0; i < travelRequests.length; i++) {
+    if (!pathsToPeeps[travelRequests[i]['path']]) {
+      pathsToPeeps[travelRequests[i]['path']] = {};
+    }
+    if (!pathsToPeeps[travelRequests[i]['path']][travelRequests[i]['time']]) {
+      pathsToPeeps[travelRequests[i]['path']][travelRequests[i]['time']] = [];
+    }
+    pathsToPeeps[travelRequests[i]['path']][travelRequests[i]['time']].push({name: travelRequests[i]['name'], number: travelRequests[i]['number']});
+    
+  }
+
+  sendMessages(pathsToPeeps);
+}
+
+function sendMessages(pathsToPeeps) {
+  for (var path in pathsToPeeps) {
+    var pathTravelers = pathsToPeeps[path];
+    for (var time in pathTravelers) {
+      var timeTravelers = pathTravelers[time];
+      var names = [];
+      for (var i = 0; i < timeTravelers.length; i++) {
+        names.push(timeTravelers[i]['name']);
+      }
+      for (var i = 0; i < timeTravelers.length; i++) {
+        names.splice(i, 1);
+        var request = {
+          src: path[0],
+          dest: path[1],
+          time: time,
+          travelers: names
+        }
+        createAndSendText(timeTravelers[i]['name'], timeTravelers[i]['number'], [request])
+        names.splice(i, 0, timeTravelers[i]['name']);
+      }
+    }
+  }
 }
 
 function createAndSendText(name, number, journey) {

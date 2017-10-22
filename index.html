@@ -4,7 +4,8 @@
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <title>SafeWalk</title>
+    <link rel="shortcut icon" href="safewalk_logo.ico" type="image/x-icon" />
+    <title>Safewalk</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
@@ -37,51 +38,56 @@
             <form id="modal-form">
               <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="name" class="form-control" id="name">
+                <input type="name" class="form-control" id="name" placeholder="e.g. John Doe">
               </div>
               <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="phone" class="form-control" id="phone">
+                <input type="phone" class="form-control" id="phone" placeholder="XXXXXXXXXX">
               </div>
-              <div>
+              <div id="timerange">
                 <fieldset>
                   <legend>Time Range:</legend>
                   <select id="speed" class="custom-select">
-                    <option>5:30PM-6:00PM</option>
-                    <option>6:00PM-6:30PM</option>
-                    <option selected="selected">6:30PM-7:00PM</option>
-                    <option>7:00PM-7:30PM</option>
-                    <option>7:30PM-8:00PM</option>
-                    <option>8:00PM-8:30PM</option>
-                  </select>
-                </fieldset>
-                <div>
-                <fieldset>
-                  <legend>Start:</legend>
-                  <select id="startlocation"class="custom-select">
-                    <option selected="selected">A</option>
-                    <option>B</option>
-                    <option>C</option>
-                    <option>D</option>
-                    <option>E</option>
-                    <option>F</option>
-                    <option>G</option>
+                    <option value="530PM">5:30PM-6:00PM</option>
+                    <option value="600PM">6:00PM-6:30PM</option>
+                    <option selected="selected" value="630PM">6:30PM-7:00PM</option>
+                    <option value="700PM">7:00PM-7:30PM</option>
+                    <option value="730PM">7:30PM-8:00PM</option>
+                    <option value="800PM">8:00PM-8:30PM</option>
                   </select>
                 </fieldset>
               </div>
-              <div>
-                <fieldset>
-                  <legend>Destination:</legend>
-                  <select id="destination"class="custom-select">
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                    <option>D</option>
-                    <option>E</option>
-                    <option>F</option>
-                    <option selected="selected">G</option>
-                  </select>
-                </fieldset>
+              <div id="wrapper">
+                <div id="startlocation">
+                  <fieldset>
+                    <legend>Start:</legend>
+                    <select id="startmenu" class="custom-select">
+                      <option selected="selected" value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>
+                      <option value="F">F</option>
+                      <option value="G">G</option>
+                      <option value="H">H</option>
+                    </select>
+                  </fieldset>
+                </div>
+                <div id="destination">
+                  <fieldset>
+                    <legend>Destination:</legend>
+                    <select id="destmenu" class="custom-select">
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>
+                      <option selected="selected" value="F">F</option>
+                      <option value="G">G</option>
+                      <option value="H">H</option>
+                    </select>
+                  </fieldset>
+                </div>
               </div>
               <div id="submitdiv">
                 <button type="submit" class="btn btn-default" id="submitbutton">Submit</button>
