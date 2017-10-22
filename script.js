@@ -17,10 +17,11 @@ var places = [
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
     var test = {lat: 47.656084, lng: -122.309322};
+    var centerSpot = {lat: 47.6607, lng: -122.3147};
     // 47°39'21.9"N 122°18'33.6"W
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 17,
-      center: test
+      zoom: 16,
+      center: centerSpot
     });
 
     for (coordinates of places) {
