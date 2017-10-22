@@ -23,11 +23,6 @@ var lettersToLocations = {
   F: 'testF'
 };
 
-// createAndSendText('Austin', '+14254451649', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
-// createAndSendText('Kush', '+12067392712', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
-// createAndSendText('Christine', '+14252935462', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
-
-
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
     var test = {lat: 47.656084, lng: -122.309322};
@@ -49,25 +44,6 @@ function initMap() {
         });
     }
 }
-
-
-
-// function initMap() {
-//     var directionsService = new google.maps.DirectionsService;
-//     var directionsDisplay = new google.maps.DirectionsRenderer;
-//     var map = new google.maps.Map(document.getElementById('map'), {
-//       zoom: 7,
-//       center: {lat: 41.85, lng: -87.65}
-//     });
-//     directionsDisplay.setMap(map);
-
-//     var onChangeHandler = function() {
-//       calculateAndDisplayRoute(directionsService, directionsDisplay);
-//     };
-//     document.getElementById('start').addEventListener('change', onChangeHandler);
-//     document.getElementById('end').addEventListener('change', onChangeHandler);
-//     document.getElementById('mode').addEventListener('change', onChangeHandler);
-// }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     directionsService.route({
@@ -91,34 +67,6 @@ function addMarker(location, map) {
       label: labels[labelIndex++ % labels.length],
       map: map
     });
-}
-
-var geocoder;
-var map;
-function initialize() {
-  geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
-  var mapOptions = {
-    zoom: 8,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-}
-
-function codeAddress() {
-  var address = document.getElementById('address').value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
 }
 
 function createAndSendText(name, number, journey) {
