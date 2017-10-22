@@ -31,6 +31,7 @@ var lettersToLocations = {
 // createAndSendText('Austin', '+14254451649', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
 // createAndSendText('Kush', '+12067392712', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
 // createAndSendText('Christine', '+14252935462', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
+var travelRequests = [];
 
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
@@ -80,17 +81,27 @@ function addMarker(location, map) {
     });
 }
 
-var geocoder;
-var map;
-function initialize() {
-  geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
-  var mapOptions = {
-    zoom: 8,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+function addUser() {
+  var name = document.getElementById('modal-form').elements[0].value;
+  var phoneNo = document.getElementById('modal-form').elements[1].value;
+  console.log(name);
+  console.log(phoneNo);
+  var timeDiv = document.getElementById('speed');
+  var time = timeDiv.options[timeDiv.selectedIndex].value;  
+  var startDiv = document.getElementById('startmenu');
+  var start = startDiv.options[startDiv.selectedIndex].value;
+  var destDiv = document.getElementById('destmenu');
+  var destination = destDiv.options[destDiv.selectedIndex].value;
+
+  user = {
+    name: name,
+    number: phoneNo,
+    time: time,
+    path: start + destination
   }
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  console.log(user);
+
+  travelRequests.push(user);
 }
 
 function codeAddress() {
@@ -189,4 +200,8 @@ function sendSmsMessage(number, body) {
       from: '+12068006289' // From a valid Twilio number
   })
   .then((message) => console.log(message.sid));
+}
+
+window.onload = function() {
+  document.getElementById('submitbutton').onclick = addUser;
 }
