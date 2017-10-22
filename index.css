@@ -1,27 +1,27 @@
-body {
-  background-color: #a3ecff;
-}
-
 #title {
   border: 5px solid red;
 }
+.navbar {
+  height: 75px;
+}
 
-#title > h1 {
+.navbar-light .navbar-brand {
   text-align: center;
-  color: black;
+  color: white !important;
   font-family: 'Libre Franklin', sans-serif;
   font-weight: lighter;
-  font-size: 60px;
-  margin: 0px;
+  font-size: 35px;
 }
 
 #map {
+  margin-top: 100px;
   height: 700px;
   width: 80%;
   margin:auto;
 }
 
 #map-canvas {
+  margin-top: 100px;
   height:70%;
   top:60px;
 }
