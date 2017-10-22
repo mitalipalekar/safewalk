@@ -14,6 +14,20 @@ var places = [
     {lat: 47.660072, lng: -122.317680}
 ];
 
+var lettersToLocations = {
+  A: 'testA',
+  B: 'testB',
+  C: 'testC',
+  D: 'testD',
+  E: 'testE',
+  F: 'testF'
+};
+
+createAndSendText('Austin', '+14254451649', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
+// createAndSendText('Kush', '+12067392712', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
+createAndSendText('Christine', '+14252935462', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
+
+
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
     var test = {lat: 47.656084, lng: -122.309322};
@@ -126,6 +140,32 @@ function codeAddress() {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+}
+
+function createAndSendText(name, number, journey) {
+  // journey should be a list of dictionaries of the form:
+  // {src: LETTER_OF_SRC, dest: LETTER_OF_DEST, time: DEPARTURE_TIME, travelers: LIST_OF_TRAVELERS}}
+  // Ex: {src: 'B', dest: 'F', time: '7:00 pm', travelers: ['Larry', 'Bob', 'Laura']}
+
+  var message = 'Hello ' + name + '!\n';
+  message += 'Here are the details of your trip from ' + lettersToLocations[journey[0]['src']] + ' to ' + lettersToLocations[journey[journey.length - 1]['dest']] + ', starting at ' + journey[0]['time'] + ':\n';
+  for (var i = 0; i < journey.length; i++) {
+    var line = 'Leave from ' + lettersToLocations[journey[i]['src']] + ' to ' + lettersToLocations[journey[i]['dest']] + ' at ' + journey[i]['time'];
+    var travelers = '';
+    if (journey[i]['travelers'].length == 0) {
+      travelers = ', unaccompanied';
+    } else {
+      travelers += ' with ' + journey[i]['travelers'][0];
+      for (var j = 1; j < journey[i]['travelers'].length; j++) {
+        travelers += ', ' + journey[i]['travelers'][j];
+      }
+    }
+    travelers += '\n';
+    line += travelers;
+    message += line;
+  }
+  message += "Text YES to confirm, or NO to cancel."
+  sendSmsMessage(number, message);
 }
 
 function sendSmsMessage(number, body) {
