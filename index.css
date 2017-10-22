@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: #a3ecff;
 }
 
 #title {
@@ -8,13 +8,20 @@ body {
 
 #title > h1 {
   text-align: center;
-  color: white;
-  font-family: 'Pacifico', cursive;
+  color: black;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: lighter;
   font-size: 60px;
   margin: 0px;
 }
 
 #map {
-	height: 500px;
-	width: 100%;
+  height: 700px;
+  width: 80%;
+  margin:auto;
+}
+
+#map-canvas {
+  height:70%;
+  top:60px;
 }
