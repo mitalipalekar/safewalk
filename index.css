@@ -20,11 +20,20 @@
 #map {
   height: 700px;
   width: 80%;
-  margin:auto;
+  margin: auto;
 }
 
 #map-canvas {
   margin-top: 100px;
-  height:70%;
-  top:60px;
+  height: 70%;
+  top: 60px;
+}
+
+#modal-button {
+  margin-top: 20px;
+}
+
+#modal-button > button {
+  display: block;
+  margin: 0 auto;
 }
