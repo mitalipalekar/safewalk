@@ -102,7 +102,7 @@ function addUser() {
   console.log(user);
 
   travelRequests.push(user);
-  if (travelRequests.length > 3)  {
+  if (travelRequests.length > 1)  {
     combineWalkingRequests()
     travelRequests = [];
   }
@@ -124,6 +124,7 @@ function codeAddress() {
 }
 
 function combineWalkingRequests() {
+  console.log("combineWalkingRequests");
   var pathsToPeeps = {};
   for (var i = 0; i < travelRequests.length; i++) {
     if (!pathsToPeeps[travelRequests[i]['path']]) {
