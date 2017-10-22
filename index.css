@@ -27,6 +27,16 @@
 
 #map-canvas {
   margin-top: 100px;
-  height:70%;
-  top:60px;
+<<<<<<< HEAD
+  height: 70%;
+  top: 60px;
+}
+
+#modal-button {
+  margin-top: 20px;
+}
+
+#modal-button > button {
+  display: block;
+  margin: 0 auto;
 }
