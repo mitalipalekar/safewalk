@@ -17,20 +17,31 @@ var places = [
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
     var test = {lat: 47.656084, lng: -122.309322};
-    // 47°39'21.9"N 122°18'33.6"W
+
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 17,
       center: test
     });
 
     for (coordinates of places) {
+        var optionstart = document.createElement('option');
+        optionstart.text = labels[labelIndex];
+        optionstart.id = 'start-' + labels[labelIndex]; 
+
+        var optionend = document.createElement('option');
+        optionend.text = labels[labelIndex];
+        optionend.id = 'end-' + labels[labelIndex]; 
+        
         var aMarker = new google.maps.Marker({
             position: coordinates,
             map: map,
             label: labels[labelIndex++ % labels.length]
         });
+        document.getElementById('start').add(optionstart);
+        document.getElementById('end').add(optionend);
     }
-    
 
     google.maps.event.addListener(map, 'click', function(event) {
         addMarker(event.latLng, map);
