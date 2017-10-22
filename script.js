@@ -4,6 +4,7 @@ var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
 
 var places = [
+    {lat: 47.656084, lng: -122.309322},
     {lat: 47.656489, lng: -122.312777},
     {lat: 47.655571, lng: -122.316135},
     {lat: 47.658151, lng: -122.313474},
@@ -22,19 +23,12 @@ function initMap() {
       zoom: 16,
       center: centerSpot
     });
-    var marker = new google.maps.Marker({
-      position: test,
-      map: map
-    });
-    var marker2 = new google.maps.Marker({
-      position: {lat: 47.111, lng: -122.111},
-      map: map
-    });
 
     for (coordinates of places) {
         var aMarker = new google.maps.Marker({
             position: coordinates,
-            map: map
+            map: map,
+            label: labels[labelIndex++ % labels.length]
         });
     }
     
