@@ -2,7 +2,7 @@
   border: 5px solid red;
 }
 .navbar {
-  height: 75px;
+  height: 60px;
 }
 
 .navbar-light .navbar-brand {
@@ -18,9 +18,11 @@
 }
 
 #map {
-  height: 850px;
+  height: 800px;
   width: 80%;
-  margin:auto;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #map-canvas {
