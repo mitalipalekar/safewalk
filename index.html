@@ -9,18 +9,28 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
       <a class="navbar-brand" href="#">SafeWalk</a>
-    </nav>  
+    </nav>
     <div id="map"></div>
+    <div>
+      <form>
+        Start:<br>
+        <input type="text" name="start"><br>
+        Finish:<br>
+        <input type="text" name="end"><br>
+        <input type="button" value="Find People" onclick="codeAddress()">
+      </form>
+    </div>
 
-
-
-    <body onload="initialize()">
+    <!-- <body onload="initialize()">
       <div>
         <input id="address" type="textbox" value="Sydney, NSW">
         <input type="button" value="Geocode" onclick="codeAddress()">
       </div>
       <div id="map-canvas"></div>
-    </body>
+    </body> -->
+
+
+
     <script src="script.js">
     </script>
     <script async defer
