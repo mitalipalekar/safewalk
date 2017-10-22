@@ -42,27 +42,12 @@ function initMap() {
     });
 
     for (coordinates of places) {
-        var optionstart = document.createElement('option');
-        optionstart.text = labels[labelIndex];
-        optionstart.id = 'start-' + labels[labelIndex]; 
-
-        var optionend = document.createElement('option');
-        optionend.text = labels[labelIndex];
-        optionend.id = 'end-' + labels[labelIndex]; 
-        
         var aMarker = new google.maps.Marker({
             position: coordinates,
             map: map,
             label: labels[labelIndex++ % labels.length]
         });
-        document.getElementById('start').add(optionstart);
-        document.getElementById('end').add(optionend);
     }
-
-    google.maps.event.addListener(map, 'click', function(event) {
-        addMarker(event.latLng, map);
-        console.log(event.latLng)
-    });
 }
 
 
