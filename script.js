@@ -23,6 +23,9 @@ var lettersToLocations = {
   F: 'testF'
 };
 
+// var travelRequests = [{name: 'blah', time: '6pm', path: 'AF', number: '+14252935462'}, {name: 'blah2', time: '6pm', path: 'AF', number: '+14252935462'}, {name: 'blah3', time: '6pm', path: 'AG', number: '+14252935462'}, {name: 'blah4', time: '7pm', path: 'AF', number: '+14252935462'}]
+// combineWalkingRequests()
+
 // createAndSendText('Austin', '+14254451649', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
 // createAndSendText('Kush', '+12067392712', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
 // createAndSendText('Christine', '+14252935462', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
@@ -119,6 +122,46 @@ function codeAddress() {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+}
+
+function combineWalkingRequests() {
+  var pathsToPeeps = {};
+  for (var i = 0; i < travelRequests.length; i++) {
+    if (!pathsToPeeps[travelRequests[i]['path']]) {
+      pathsToPeeps[travelRequests[i]['path']] = {};
+    }
+    if (!pathsToPeeps[travelRequests[i]['path']][travelRequests[i]['time']]) {
+      pathsToPeeps[travelRequests[i]['path']][travelRequests[i]['time']] = [];
+    }
+    pathsToPeeps[travelRequests[i]['path']][travelRequests[i]['time']].push({name: travelRequests[i]['name'], number: travelRequests[i]['number']});
+    
+  }
+
+  sendMessages(pathsToPeeps);
+}
+
+function sendMessages(pathsToPeeps) {
+  for (var path in pathsToPeeps) {
+    var pathTravelers = pathsToPeeps[path];
+    for (var time in pathTravelers) {
+      var timeTravelers = pathTravelers[time];
+      var names = [];
+      for (var i = 0; i < timeTravelers.length; i++) {
+        names.push(timeTravelers[i]['name']);
+      }
+      for (var i = 0; i < timeTravelers.length; i++) {
+        names.splice(i, 1);
+        var request = {
+          src: path[0],
+          dest: path[1],
+          time: time,
+          travelers: names
+        }
+        createAndSendText(timeTravelers[i]['name'], timeTravelers[i]['number'], [request])
+        names.splice(i, 0, timeTravelers[i]['name']);
+      }
+    }
+  }
 }
 
 function createAndSendText(name, number, journey) {
