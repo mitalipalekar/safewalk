@@ -44,6 +44,10 @@
   width: 100%;
 }
 
+#wrapper {
+  margin-bottom: 60px;
+}
+
 #startlocation, #destination {
   float:left;
   width: 50%;
