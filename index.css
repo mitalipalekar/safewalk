@@ -1,0 +1,20 @@
+body {
+  background-color: black;
+}
+
+#title {
+  border: 5px solid red;
+}
+
+#title > h1 {
+  text-align: center;
+  color: white;
+  font-family: 'Pacifico', cursive;
+  font-size: 60px;
+  margin: 0px;
+}
+
+#map {
+	height: 500px;
+	width: 100%;
+}
