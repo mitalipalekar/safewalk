@@ -15,18 +15,15 @@ var places = [
 ];
 
 var lettersToLocations = {
-  A: 'testA',
-  B: 'testB',
-  C: 'testC',
-  D: 'testD',
-  E: 'testE',
-  F: 'testF'
+  A: 'Red Square',
+  B: 'Schmitz Hall',
+  C: 'Maple Hall',
+  D: 'Starbucks on 42nd',
+  E: 'University Book Store',
+  F: 'Safeway',
+  G: 'Trader Joe\'s',
+  H: 'Disability Center'
 };
-
-// createAndSendText('Austin', '+14254451649', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
-// createAndSendText('Kush', '+12067392712', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
-// createAndSendText('Christine', '+14252935462', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
-
 
 function initMap() {
     var uluru = {lat: 47.608, lng: -122.335};
@@ -41,33 +38,24 @@ function initMap() {
       center: centerSpot
     });
 
+    var startSelect = document.getElementById('startLocation');
+    var endSelect = document.getElementById('endLocation');
     for (coordinates of places) {
         var aMarker = new google.maps.Marker({
             position: coordinates,
             map: map,
             label: labels[labelIndex++ % labels.length]
         });
+        var startOption = document.createElement('option');
+        var endOption = document.createElement('option');
+        startOption.text = labels[labelIndex - 1];
+        startOption.id = "start-" + startOption.text;
+        endOption.text = labels[labelIndex - 1];
+        endOption.id = "end-" + endOption.text;
+        startSelect.appendChild(startOption);
+        endSelect.appendChild(endOption)
     }
 }
-
-
-
-// function initMap() {
-//     var directionsService = new google.maps.DirectionsService;
-//     var directionsDisplay = new google.maps.DirectionsRenderer;
-//     var map = new google.maps.Map(document.getElementById('map'), {
-//       zoom: 7,
-//       center: {lat: 41.85, lng: -87.65}
-//     });
-//     directionsDisplay.setMap(map);
-
-//     var onChangeHandler = function() {
-//       calculateAndDisplayRoute(directionsService, directionsDisplay);
-//     };
-//     document.getElementById('start').addEventListener('change', onChangeHandler);
-//     document.getElementById('end').addEventListener('change', onChangeHandler);
-//     document.getElementById('mode').addEventListener('change', onChangeHandler);
-// }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     directionsService.route({
@@ -91,34 +79,6 @@ function addMarker(location, map) {
       label: labels[labelIndex++ % labels.length],
       map: map
     });
-}
-
-var geocoder;
-var map;
-function initialize() {
-  geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
-  var mapOptions = {
-    zoom: 8,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-}
-
-function codeAddress() {
-  var address = document.getElementById('address').value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
 }
 
 function createAndSendText(name, number, journey) {
