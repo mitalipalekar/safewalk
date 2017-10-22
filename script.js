@@ -46,14 +46,6 @@ function initMap() {
             map: map,
             label: labels[labelIndex++ % labels.length]
         });
-        var startOption = document.createElement('option');
-        var endOption = document.createElement('option');
-        startOption.text = labels[labelIndex - 1];
-        startOption.id = "start-" + startOption.text;
-        endOption.text = labels[labelIndex - 1];
-        endOption.id = "end-" + endOption.text;
-        startSelect.appendChild(startOption);
-        endSelect.appendChild(endOption)
     }
 }
 

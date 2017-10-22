@@ -55,6 +55,11 @@
 
 #submitdiv {
   padding-top: 20px;
+  margin-top: 20px;
+}
+
+#modal-button {
+  margin-bottom: 30px;
 }
 
 fieldset > legend {
