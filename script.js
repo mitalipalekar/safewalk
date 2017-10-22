@@ -102,6 +102,10 @@ function addUser() {
   console.log(user);
 
   travelRequests.push(user);
+  if (travelRequests.length > 3)  {
+    combineWalkingRequests()
+    travelRequests = [];
+  }
 }
 
 function codeAddress() {
