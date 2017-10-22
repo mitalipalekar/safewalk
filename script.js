@@ -15,12 +15,14 @@ var places = [
 ];
 
 var lettersToLocations = {
-  A: 'testA',
-  B: 'testB',
-  C: 'testC',
-  D: 'testD',
-  E: 'testE',
-  F: 'testF'
+  A: 'Red Square',
+  B: 'Schmitz Hall',
+  C: 'Maple Hall',
+  D: 'Starbucks on 42nd',
+  E: 'University Book Store',
+  F: 'Safeway',
+  G: 'Trader Joe\'s',
+  H: 'Disability Center'
 };
 
 // createAndSendText('Austin', '+14254451649', [{src: 'A', dest: 'E', time: '9:00 pm', travelers: ['Barry']}])
@@ -41,12 +43,22 @@ function initMap() {
       center: centerSpot
     });
 
+    var startSelect = document.getElementById('startLocation');
+    var endSelect = document.getElementById('endLocation');
     for (coordinates of places) {
         var aMarker = new google.maps.Marker({
             position: coordinates,
             map: map,
             label: labels[labelIndex++ % labels.length]
         });
+        var startOption = document.createElement('option');
+        var endOption = document.createElement('option');
+        startOption.text = labels[labelIndex - 1];
+        startOption.id = "start-" + startOption.text;
+        endOption.text = labels[labelIndex - 1];
+        endOption.id = "end-" + endOption.text;
+        startSelect.appendChild(startOption);
+        endSelect.appendChild(endOption)
     }
 }
 
